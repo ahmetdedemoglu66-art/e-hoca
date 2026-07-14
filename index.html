@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erkan Hoca - Türkçe Sohbet</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- Sol panel - WhatsApp tarzı sohbet listesi -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="avatar-wrap">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23007a5c'/%3E%3Ctext x='50' y='62' font-size='40' fill='white' text-anchor='middle' font-family='sans-serif'%3EE%3C/text%3E%3C/svg%3E" alt="Erkan Hoca" class="sidebar-avatar">
+        </div>
+        <div class="sidebar-actions">
+          <button type="button" class="icon-btn" title="Durum">○</button>
+          <button type="button" class="icon-btn" title="Yeni sohbet">💬</button>
+          <button type="button" class="icon-btn" title="Menü">⋮</button>
+        </div>
+      </header>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" placeholder="Sohbet ara veya yeni başlat" readonly>
+      </div>
+      <div class="chat-list">
+        <div class="chat-item active" data-chat="erkan">
+          <div class="chat-item-avatar">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23007a5c'/%3E%3Ctext x='50' y='62' font-size='40' fill='white' text-anchor='middle' font-family='sans-serif'%3EE%3C/text%3E%3C/svg%3E" alt="">
+          </div>
+          <div class="chat-item-body">
+            <div class="chat-item-top">
+              <span class="chat-item-name">Erkan Hoca</span>
+              <span class="chat-item-time">Şimdi</span>
+            </div>
+            <div class="chat-item-preview">Ortaokul Türkçe — Sorularını yaz, cevaplayayım.</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Ana sohbet alanı -->
+    <main class="chat-main">
+      <header class="chat-header">
+        <div class="chat-header-avatar">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23007a5c'/%3E%3Ctext x='50' y='62' font-size='40' fill='white' text-anchor='middle' font-family='sans-serif'%3EE%3C/text%3E%3C/svg%3E" alt="Erkan Hoca">
+        </div>
+        <div class="chat-header-info">
+          <h1>Erkan Hoca</h1>
+          <p>çevrimiçi · Ortaokul Türkçe</p>
+        </div>
+        <div class="chat-header-actions">
+          <button type="button" class="icon-btn" id="btnSettings" title="Ayarlar">⚙</button>
+          <button type="button" class="icon-btn">📹</button>
+          <button type="button" class="icon-btn">📞</button>
+          <button type="button" class="icon-btn">⋮</button>
+        </div>
+      </header>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg msg-incoming">
+          <div class="msg-avatar">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23007a5c'/%3E%3Ctext x='50' y='62' font-size='40' fill='white' text-anchor='middle' font-family='sans-serif'%3EE%3C/text%3E%3C/svg%3E" alt="">
+          </div>
+          <div class="msg-bubble msg-bubble-in">
+            <span class="msg-text">Selam! Ben Erkan Hoca. Ortaokul Türkçe dersi için buradayım. Dil bilgisi, yazım kuralları, paragraf, sözcük türleri, fiil kipleri, söz sanatları… Ne sorarsan sor, doğru cevabı vereyim. 📚<br><br>Kendi sorularına (ör. “çiçekler gülümsüyordu hangi söz sanatı?”) daha akıllı cevap almak için sağ üstten ⚙ Ayarlar’a girip OpenAI API Key ekleyebilirsin.</span>
+            <span class="msg-time">Şimdi</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="chat-footer">
+        <button type="button" class="footer-btn" title="Emoji">😊</button>
+        <button type="button" class="footer-btn" title="Dosya">📎</button>
+        <div class="input-wrap">
+          <input type="text" id="messageInput" class="message-input" placeholder="Mesaj yazın" autocomplete="off" maxlength="2000">
+        </div>
+        <button type="button" class="send-btn" id="sendBtn" title="Gönder">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Ayarlar modal -->
+  <div class="modal-overlay" id="settingsOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="settingsTitle">
+      <div class="modal-header">
+        <h2 id="settingsTitle">Ayarlar</h2>
+        <button type="button" class="modal-close" id="btnCloseSettings" aria-label="Kapat">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="settings-desc">Varsayılan olarak tamamen ücretsiz yapay zeka kullanılır; API anahtarı gerekmez. İstersen Gemini veya OpenAI anahtarı da ekleyebilirsin.</p>
+        <label class="settings-label" for="apiProviderSelect">API türü</label>
+        <select id="apiProviderSelect" class="settings-input settings-select">
+          <option value="ucretsiz">Tamamen Ücretsiz (anahtar gerekmez)</option>
+          <option value="gemini">Gemini (Google) — ücretsiz kota</option>
+          <option value="openai">OpenAI (ChatGPT)</option>
+        </select>
+        <label class="settings-label" for="apiKeyInput">API Key</label>
+        <input type="password" id="apiKeyInput" class="settings-input" placeholder="Gemini: AIza... / OpenAI: sk-..." autocomplete="off">
+        <p class="settings-hint" id="apiKeyHint">Key’i <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> → Get API key ile ücretsiz alabilirsin. Tarayıcında saklanır.</p>
+        <div class="settings-actions">
+          <button type="button" class="btn btn-primary" id="btnSaveApiKey">Kaydet</button>
+          <button type="button" class="btn btn-secondary" id="btnClearApiKey">Key’i sil</button>
+        </div>
+        <p class="settings-status" id="apiKeyStatus"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="erkan-hoca.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
